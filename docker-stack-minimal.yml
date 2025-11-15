@@ -1,0 +1,39 @@
+﻿version: '3.8'
+
+services:
+  account-service:
+    image: uttamkamar/account-service:latest
+    ports:
+      - '3001:3000'
+    networks:
+      - skillfybank-overlay
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: any
+
+  transaction-service:
+    image: uttamkamar/transaction-service:latest
+    ports:
+      - '8082:8080'
+    networks:
+      - skillfybank-overlay
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: any
+
+  notification-service:
+    image: uttamkamar/notification-service:latest
+    ports:
+      - '5001:5000'
+    networks:
+      - skillfybank-overlay
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: any
+
+networks:
+  skillfybank-overlay:
+    external: true

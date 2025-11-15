@@ -1,0 +1,33 @@
+﻿apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: account-data-pv
+  namespace: skillfybank
+  labels:
+    type: local
+    app: account-service
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/data/account-service"
+  persistentVolumeReclaimPolicy: Retain
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: account-data-pvc
+  namespace: skillfybank
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  selector:
+    matchLabels:
+      app: account-service

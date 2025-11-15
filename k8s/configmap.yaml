@@ -1,0 +1,11 @@
+﻿apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: skillfybank
+data:
+  APP_ENVIRONMENT: "production"
+  LOG_LEVEL: "info"
+  ACCOUNT_SERVICE_URL: "http://account-service:3000"
+  TRANSACTION_SERVICE_URL: "http://transaction-service:8080"
+  NOTIFICATION_SERVICE_URL: "http://notification-service:5000"
